@@ -7,8 +7,25 @@ class LinkedList:
     def __init__(self, root):
         self.root = root
 
+    #Add at head
+    def addAtHead(self, node):
+        node.next = root
+        self.root = node
+    
+    #Add at index
+    def addAtIndex(self, root, index, node):
+        iter = 1
+        curr = root
+        while iter < index - 1:
+            curr = curr.next
+            iter += 1
+
+        node.next = curr.next
+        curr.next = node
+
+
     #Add the provided element to the last
-    def addLast(self, root, node):
+    def addAtLast(self, root, node):
         curr = root
 
         while curr.next != None:
@@ -16,6 +33,10 @@ class LinkedList:
 
         curr.next = node
     
+    #Delete at head
+    def deleteAtHead(self):
+        self.root = self.root.next
+
     #Delete element from the linked list at any index
     def delete(self, root, index):
         iter = 1
@@ -23,18 +44,17 @@ class LinkedList:
 
         while iter < index - 1:     #get to the prev node
             iter +=  1
-            curr.next
+            curr = curr.next
 
         curr.next = curr.next.next
         print()
 
     #Print the complete list
-    def printList(self, root):
-        curr = root
+    def printList(self):
+        curr = self.root
         while curr != None:
-            print(curr.data, end = " -> ")
+            print(curr.data, end = " > ")
             curr = curr.next
-        print()
 
     #Get the linked list as Simple list
     def getList(self, root):
@@ -50,13 +70,27 @@ root = Node(10)
 node1 = Node(28)
 node2 = Node(38)
 node3 = Node(48)
+node4 = Node(00)
+node5 = Node(99)
 
 ll = LinkedList(root)
-ll.addLast(root, node1)
-ll.addLast(root, node2)
-ll.addLast(root, node3)
-ll.printList(root)
+ll.addAtLast(root, node1)
+ll.addAtLast(root, node2)
+ll.addAtLast(root, node3)
+print("List created")
+ll.printList()
 ll.delete(root, 2)
-ll.printList(root)
+print("Node deleted at 2")
+ll.printList()
+ll.addAtHead(node4)
+print("Add at Head")
+ll.printList()
+ll.deleteAtHead()
+print("\nHead deleted")
+ll.printList()
+ll.addAtIndex(root, 3, node5)
+print("\nAdded at 2")
+ll.printList()
 
-
+ll.addAtHead(Node(100))
+ll.printList()
