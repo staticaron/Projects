@@ -8,7 +8,7 @@ class LinkedList:
         self.root = root
 
     #Add at head
-    def addAtHead(self, root, node):
+    def addAtHead(self, node):
         node.next = root
         self.root = node
     
@@ -82,7 +82,7 @@ ll.printList()
 ll.delete(root, 2)
 print("Node deleted at 2")
 ll.printList()
-ll.addAtHead(root, node4)
+ll.addAtHead(node4)
 print("Add at Head")
 ll.printList()
 ll.deleteAtHead()
@@ -90,4 +90,7 @@ print("\nHead deleted")
 ll.printList()
 ll.addAtIndex(root, 3, node5)
 print("\nAdded at 2")
+ll.printList()
+
+ll.addAtHead(Node(100))
 ll.printList()
