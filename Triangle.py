@@ -12,9 +12,16 @@ class Triangle:
     area = 0
 
     def __init__(self, side1, side2, side3):
+
+        #Sides
         self.side1 = side1
         self.side2 = side2
         self.side3 = side3
+
+        #Angles
+        self.angle1 = math.degrees((  math.acos((math.pow(side2, 2) + math.pow(side3, 2) - math.pow(side1, 2))/(2*side2*side3))  ))
+        self.angle2 = math.degrees((  math.acos((math.pow(side1, 2) + math.pow(side3, 2) - math.pow(side2, 2))/(2*side1*side3))  ))
+        self.angle3 = math.degrees((  math.acos((math.pow(side1, 2) + math.pow(side2, 2) - math.pow(side3, 2))/(2*side1*side2))  ))
 
         #Area
         s = (side1 + side2 + side3) * 0.5
@@ -26,7 +33,7 @@ class Triangle:
         print("\t", self.side1, "\n\t", self.side2, "\n\t", self.side3)
         print("Angles :")
         print("\t", self.angle1, "\n\t", self.angle2, "\n\t", self.angle3)
-        print("Area :", self.area)
+        print("Area   :\n\t", self.area)
 
     def __eq__(self, value):
         if self.side1 == value.side1 and self.side2  == value.side2 and self.side3 == value.side3:
