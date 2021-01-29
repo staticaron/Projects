@@ -18,10 +18,18 @@ class Triangle:
         self.side2 = side2
         self.side3 = side3
 
+
+
         #Angles
-        self.angle1 = math.degrees((  math.acos((math.pow(side2, 2) + math.pow(side3, 2) - math.pow(side1, 2))/(2*side2*side3))  ))
-        self.angle2 = math.degrees((  math.acos((math.pow(side1, 2) + math.pow(side3, 2) - math.pow(side2, 2))/(2*side1*side3))  ))
-        self.angle3 = math.degrees((  math.acos((math.pow(side1, 2) + math.pow(side2, 2) - math.pow(side3, 2))/(2*side1*side2))  ))
+        try:
+            self.angle1 = math.degrees((  math.acos((math.pow(side2, 2) + math.pow(side3, 2) - math.pow(side1, 2))/(2*side2*side3))  ))
+            self.angle2 = math.degrees((  math.acos((math.pow(side1, 2) + math.pow(side3, 2) - math.pow(side2, 2))/(2*side1*side3))  ))
+            self.angle3 = math.degrees((  math.acos((math.pow(side1, 2) + math.pow(side2, 2) - math.pow(side3, 2))/(2*side1*side2))  ))
+        except:
+            print("Can't determine angles")
+            print("Please check that sum of smaller side is always greater than the largest side")
+            print("Triangle was not created.")
+            return
 
         #Area
         s = (side1 + side2 + side3) * 0.5
@@ -36,14 +44,43 @@ class Triangle:
         print("Area   :\n\t", self.area)
 
     def __eq__(self, value):
-        if self.side1 == value.side1 and self.side2  == value.side2 and self.side3 == value.side3:
-            return True
-        else:
-            return False
+        thisSides = {self.side1 : 0, self.side2 : 0, self.side3 : 0}
+        otherSides = {value.side1 : 0, value.side2 : 0, value.side3 : 0}
+        _equality = True
 
+        for i in thisSides.keys():
+
+            if thisSides[i] == 1:
+                continue
+            
+            _equalFound = False
+
+            for j in otherSides.keys():
+
+                if otherSides[j] == 1:
+                    continue
+
+                if i == j:
+                    thisSides[i] = 1
+                    otherSides[j] = 1
+                    _equalFound = True
+                    break
+            
+            _equality = _equality and _equalFound
+
+        return _equality
 
 #__main__
 
-tri_1 = Triangle(side1=10, side2=20, side3=25)
-tri_2 = Triangle(10, 20, 25)
-tri_1.printDetails()
+
+tri_1 = Triangle(10, 20, 25)
+tri_2 = Triangle(22, 10, 10)
+
+tri_2.printDetails()
+
+ans = tri_1 == tri_2
+
+print("Triangles are congruent {}".format(ans))
+
+
+
