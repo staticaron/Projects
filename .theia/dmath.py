@@ -9,3 +9,6 @@ def getPower(num, power):
 
 def getSide_RighiTriangle(side, hypo):
     return math.sqrt(getPower(hypo, 2) - getPower(side, 2))
+
+def getHypo_RightTriangle(side1, side2):
+    return math.sqrt(getPower(side1, 2) + getPower(side2, 2))

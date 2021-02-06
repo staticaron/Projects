@@ -18,8 +18,6 @@ class Triangle:
         self.side2 = side2
         self.side3 = side3
 
-
-
         #Angles
         try:
             self.angle1 = math.degrees((  math.acos((math.pow(side2, 2) + math.pow(side3, 2) - math.pow(side1, 2))/(2*side2*side3))  ))
