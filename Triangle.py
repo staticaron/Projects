@@ -11,6 +11,7 @@ class Triangle:
 
     area = 0
 
+    #Constructors
     def __init__(self, side1, side2, side3):
 
         #Sides
@@ -34,6 +35,7 @@ class Triangle:
         a = math.sqrt(s * (s - side1) * (s - side2) * (s - side3))
         self.area = a
     
+    #Display methods
     def printDetails(self):
         print("Sides : ")
         print("\t", self.side1, "\n\t", self.side2, "\n\t", self.side3)
@@ -41,6 +43,14 @@ class Triangle:
         print("\t", self.angle1, "\n\t", self.angle2, "\n\t", self.angle3)
         print("Area   :\n\t", self.area)
 
+    #Checks
+    def isRightAngled(self):
+        if self.angle1 == 90 or self.angle2 == 90 or self.angle3 == 90:
+            return True
+            
+        return False
+
+    #Comparisson Methods
     def __eq__(self, value):
         thisSides = {self.side1 : 0, self.side2 : 0, self.side3 : 0}
         otherSides = {value.side1 : 0, value.side2 : 0, value.side3 : 0}
@@ -79,6 +89,5 @@ tri_2.printDetails()
 ans = tri_1 == tri_2
 
 print("Triangles are congruent {}".format(ans))
-
-
+print("Triangle is right angled : {}".format(tri_1.isRightAngled()))
 
